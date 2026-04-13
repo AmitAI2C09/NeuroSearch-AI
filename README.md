@@ -49,6 +49,20 @@ The system retrieves the Top-K most relevant results based on similarity scores.
 
 ---
 
+📊 Dataset
+
+The dataset used in this project consists of manually collected images from publicly available sources.
+
+- Images are stored locally in the "/images" directory
+- The dataset contains diverse categories such as animals, objects, and scenes
+- No labels are required, as CLIP performs zero-shot semantic matching
+
+This setup demonstrates how multimodal retrieval systems can work even without explicitly labeled datasets.
+
+- Dataset size: ~200 images
+
+  
+
 📸 Screenshots
 
 ### Text Search
@@ -63,15 +77,16 @@ The system retrieves the Top-K most relevant results based on similarity scores.
 📂 Project Structure
 
 NeuroSearch/
-│── app.py          # Streamlit UI
 
-│── model.py        # CLIP embedding functions
+│── app.py                     # Streamlit UI
 
-│── utils.py        # Similarity + ranking logic
+│── model.py                   # CLIP embedding functions
 
-│── images/         # Dataset
+│── utils.py                   # Similarity + ranking logic
 
-│── screenshots/    # Demo images
+│── images/                    # Dataset
+
+│── screenshots/.              # Demo images
 
 
 ---
