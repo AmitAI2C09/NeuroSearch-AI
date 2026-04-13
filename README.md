@@ -64,10 +64,15 @@ The system retrieves the Top-K most relevant results based on similarity scores.
 
 NeuroSearch/
 │── app.py          # Streamlit UI
+
 │── model.py        # CLIP embedding functions
+
 │── utils.py        # Similarity + ranking logic
+
 │── images/         # Dataset
+
 │── screenshots/    # Demo images
+
 
 ---
 
