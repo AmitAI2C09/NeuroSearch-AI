@@ -1,96 +1,115 @@
-# 🔍 NeuroSearch — Multimodal AI Search Engine
+🔍 NeuroSearch — CLIP-based Multimodal AI Search Engine
 
-NeuroSearch is an AI-powered multimodal image retrieval system that allows users to search images using text, image, or a combination of both. It leverages the CLIP (Contrastive Language–Image Pretraining) model to map text and images into a shared embedding space, enabling semantic search across different modalities.
+NeuroSearch is an AI-powered multimodal retrieval system that enables semantic search across text and images. It leverages a pretrained CLIP model to map both modalities into a shared embedding space, allowing efficient cross-modal similarity search.
 
-Unlike traditional keyword-based systems, NeuroSearch understands the meaning behind queries and retrieves visually and semantically relevant results using similarity-based ranking.
-
----
-
-## 🚀 Features
-
-- Text to Image Search using natural language queries  
-- Image to Image Search for visual similarity  
-- Combined Search using both text and image inputs  
-- Cosine similarity-based ranking  
-- Modern and responsive UI built with Streamlit  
+Unlike traditional keyword-based systems, NeuroSearch retrieves results based on semantic understanding using embedding similarity.
 
 ---
 
-## 🧠 How It Works
+🚀 Features
 
-The system follows a simple pipeline:
-
-Input (Text or Image) → CLIP Embedding → Similarity Calculation → Ranking → Output
-
-Both text and images are converted into vector embeddings using CLIP, and cosine similarity is used to find the most relevant matches.
-
----
-
-## 🛠️ Tech Stack
-
-Python  
-PyTorch  
-OpenAI CLIP  
-Streamlit  
-NumPy  
+- 🔎 Text-to-Image Search using natural language queries
+- 🖼️ Image-to-Image Search for visual similarity
+- 🔗 Combined Search (Text + Image)
+- 📊 Top-K Retrieval System (ranked results)
+- 🎯 Cosine similarity-based matching
+- 🌐 Interactive UI built with Streamlit
 
 ---
 
-## 📸 Screenshots
+🧠 Core Idea
 
-### Text Search
-![Text Search](screenshots/text_search.png)
+NeuroSearch uses representation learning to embed both text and images into a shared vector space:
 
-### Image Search
-![Image Search](screenshots/image_search.png)
+Text → Embedding
+Image → Embedding
+Similarity → Cosine Similarity
 
-### Combined Search
-![Combined Search](screenshots/combined_search.png)
+The system retrieves the Top-K most relevant results based on similarity scores.
 
 ---
 
-## 📂 Project Structure
+⚙️ How It Works
 
-```
+1. User inputs text or uploads an image
+2. CLIP encodes inputs into embeddings
+3. Dataset images are encoded into the same space
+4. Cosine similarity is computed
+5. Top-K most similar images are retrieved and displayed
+
+---
+
+🛠️ Tech Stack
+
+- Python
+- PyTorch
+- OpenAI CLIP
+- Streamlit
+- NumPy
+
+---
+
+📸 Screenshots
+
+Text Search
+
+"Text Search" (screenshots/text_search.png)
+
+Image Search
+
+"Image Search" (screenshots/image_search.png)
+
+Combined Search
+
+"Combined Search" (screenshots/combined_search.png)
+
+---
+
+📂 Project Structure
+
 NeuroSearch/
-│── app.py
-│── model.py
-│── utils.py
-│── requirements.txt
-│── screenshots/
-│── images/
-```
+│── app.py          # Streamlit UI
+│── model.py        # CLIP embedding functions
+│── utils.py        # Similarity + ranking logic
+│── images/         # Dataset
+│── screenshots/    # Demo images
 
 ---
 
-## ▶️ Run Locally
+▶️ Run Locally
 
-```
 git clone https://github.com/AmitAI2C09/NeuroSearch-AI.git
 cd NeuroSearch-AI
 pip install -r requirements.txt
 streamlit run app.py
-```
 
 ---
 
-## 📌 Future Improvements
+📌 Future Improvements
 
-- Improve retrieval accuracy  
-- Add FAISS for faster search  
-- Deploy as a web application  
-- Expand dataset  
+- Faster retrieval using FAISS
+- Larger and more diverse dataset
+- Fine-tuning CLIP for domain-specific tasks
+- Deploy as a scalable web application
 
 ---
 
-## 👨‍💻 Author
+💡 Key Learnings
 
-Amit Prakash Singh  
+- Multimodal representation learning
+- Embedding-based retrieval systems
+- Practical use of pretrained deep learning models
+
+---
+
+👨‍💻 Author
+
+Amit Prakash Singh
 B.Tech CSE (AI)
 
 ---
 
-## ⭐ Acknowledgements
+⭐ Acknowledgements
 
-OpenAI CLIP  
-Streamlit
+- OpenAI CLIP
+- Streamlit
