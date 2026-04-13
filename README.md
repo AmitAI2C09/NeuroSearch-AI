@@ -39,13 +39,13 @@ NumPy
 ## 📸 Screenshots
 
 ### Text Search
-![Text Search](screenshots/text_search.png)
+![Text Search](screenshots/text_search)
 
 ### Image Search
-![Image Search](screenshots/image_search.png)
+![Image Search](screenshots/image_search)
 
 ### Combined Search
-![Combined Search](screenshots/combined_search.png)
+![Combined Search](screenshots/combined_search)
 
 ---
 
