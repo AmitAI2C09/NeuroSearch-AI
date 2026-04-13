@@ -51,19 +51,14 @@ The system retrieves the Top-K most relevant results based on similarity scores.
 
 📸 Screenshots
 
-Text Search
+### Text Search
+![Text Search](screenshots/text_search.png)
 
-"Text Search" (screenshots/text_search.png)
+### Image Search
+![Image Search](screenshots/image_search.png)
 
-Image Search
-
-"Image Search" (screenshots/image_search.png)
-
-Combined Search
-
-"Combined Search" (screenshots/combined_search.png)
-
----
+### Combined Search
+![Combined Search](screenshots/combined_search.png)
 
 📂 Project Structure
 
