@@ -209,4 +209,6 @@ elif mode == "Combined" and uploaded_file is not None and query:
 
         scores = get_top_k(combined_embedding, image_embeddings, k)
 
+
     display_results(scores)
+
