@@ -78,15 +78,15 @@ This setup demonstrates how multimodal retrieval systems can work even without e
 
 NeuroSearch/
 
-│── app.py                     # Streamlit UI
+│── app.py                      # Streamlit UI
 
-│── model.py                   # CLIP embedding functions
+│── model.py                    # CLIP embedding functions
 
-│── utils.py                   # Similarity + ranking logic
+│── utils.py                    # Similarity + ranking logic
 
-│── images/                    # Dataset
+│── images/                     # Dataset
 
-│── screenshots/.              # Demo images
+│── screenshots/.               # Demo images
 
 
 ---
