@@ -11,7 +11,7 @@ from PIL import Image
 st.set_page_config(page_title="NeuroSearch", layout="wide")
 
 # -----------------------------
-# 🔥 ADVANCED UI
+# 🔥 UI STYLE
 # -----------------------------
 st.markdown("""
 <style>
@@ -81,7 +81,31 @@ def load_embeddings():
 image_embeddings = load_embeddings()
 
 # -----------------------------
-# INPUT AREA
+# 🔥 TOP-K FUNCTION (CORE)
+# -----------------------------
+def get_top_k(query_embedding, image_embeddings, k=6):
+    similarities = []
+    image_names = []
+
+    for img, emb in image_embeddings.items():
+        sim = cosine_similarity(query_embedding, emb)
+        similarities.append(sim)
+        image_names.append(img)
+
+    similarities = torch.tensor(similarities)
+
+    topk_values, topk_indices = torch.topk(similarities, k)
+
+    results = []
+    for i in range(k):
+        img_name = image_names[topk_indices[i]]
+        score = topk_values[i].item()
+        results.append((img_name, score))
+
+    return results
+
+# -----------------------------
+# INPUT UI
 # -----------------------------
 col1, col2, col3 = st.columns([1,2,1])
 
@@ -112,7 +136,12 @@ mode = st.session_state.mode
 st.markdown(f"### 🔎 Mode: {mode}")
 
 # -----------------------------
-# DISPLAY FUNCTION (FIXED SIZE)
+# TOP-K SLIDER
+# -----------------------------
+k = st.slider("Number of results (Top-K)", 3, 12, 6)
+
+# -----------------------------
+# DISPLAY RESULTS
 # -----------------------------
 def display_results(scores):
     cols = st.columns(3)
@@ -123,7 +152,7 @@ def display_results(scores):
 
             st.image(
                 os.path.join(IMAGE_FOLDER, img),
-                width=240  # 🔥 FIXED SIZE
+                width=240
             )
 
             st.markdown(f"**Score:** {score:.2f}")
@@ -137,13 +166,7 @@ if mode == "Text" and query:
 
     with st.spinner("🔍 AI is searching..."):
         query_embedding = get_text_embedding(f"a photo of a {query}")
-
-        scores = []
-        for img, emb in image_embeddings.items():
-            sim = cosine_similarity(query_embedding, emb)
-            scores.append((img, sim.item()))
-
-        scores = sorted(scores, key=lambda x: x[1], reverse=True)[:6]
+        scores = get_top_k(query_embedding, image_embeddings, k)
 
     display_results(scores)
 
@@ -153,8 +176,6 @@ if mode == "Text" and query:
 elif mode == "Image" and uploaded_file is not None:
 
     image = Image.open(uploaded_file)
-
-    # 🔥 FIXED PREVIEW SIZE
     st.image(image, caption="Uploaded Image", width=300)
 
     with st.spinner("🔍 AI is searching..."):
@@ -162,13 +183,7 @@ elif mode == "Image" and uploaded_file is not None:
         image.save(temp_path)
 
         query_embedding = get_image_embedding(temp_path)
-
-        scores = []
-        for img, emb in image_embeddings.items():
-            sim = cosine_similarity(query_embedding, emb)
-            scores.append((img, sim.item()))
-
-        scores = sorted(scores, key=lambda x: x[1], reverse=True)[:6]
+        scores = get_top_k(query_embedding, image_embeddings, k)
 
     display_results(scores)
 
@@ -178,8 +193,6 @@ elif mode == "Image" and uploaded_file is not None:
 elif mode == "Combined" and uploaded_file is not None and query:
 
     image = Image.open(uploaded_file)
-
-    # 🔥 FIXED PREVIEW SIZE
     st.image(image, caption="Uploaded Image", width=300)
 
     with st.spinner("🔍 AI is searching..."):
@@ -194,11 +207,6 @@ elif mode == "Combined" and uploaded_file is not None and query:
             dim=0
         )
 
-        scores = []
-        for img, emb in image_embeddings.items():
-            sim = cosine_similarity(combined_embedding, emb)
-            scores.append((img, sim.item()))
-
-        scores = sorted(scores, key=lambda x: x[1], reverse=True)[:6]
+        scores = get_top_k(combined_embedding, image_embeddings, k)
 
     display_results(scores)
